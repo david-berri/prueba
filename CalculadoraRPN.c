@@ -2,21 +2,22 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define STACK_SIZE 8
+#define Tam_Pila 8
 #define PI 3.1416
+#define grados 180.0
 
-/* ====== Pila ====== */
-float stack[STACK_SIZE];
+/*Pila*/
+float stack[Tam_Pila];
 int top = -1;
 
-/* ====== Prototipos ====== */
+/* Acciones*/
 void push(float value);
 float pop(void);
 int isEmpty(void);
 void printStack(void);
 void processOperator(char op);
 
-/* ====== Función principal ====== */
+/* Función principal*/
 int main(void)
 {
     char input;
@@ -54,10 +55,10 @@ int main(void)
     return 0;
 }
 
-/* ====== Manejo de pila ====== */
+/*Manejo de pila  */
 void push(float value)
 {
-    if (top >= STACK_SIZE - 1)
+    if (top >= Tam_Pila - 1)
     {
         printf("Error: pila llena\n");
         return;
@@ -80,7 +81,7 @@ int isEmpty(void)
     return top == -1;
 }
 
-/* ====== Operaciones ====== */
+/*  Operaciones  */
 void processOperator(char op)
 {
     float a, b;
@@ -135,20 +136,21 @@ void processOperator(char op)
 
         case 's':   /* seno (grados) */
             a = pop();
-            push(sin(a * PI / 180.0));
+            push(sin(a * PI / grados));
             break;
 
         case 'c':   /* coseno (grados) */
             a = pop();
-            push(cos(a * PI / 180.0));
+            push(cos(a * PI / grados));
             break;
 
         case 't':   /* tangente (grados) */
             a = pop();
-            push(tan(a * PI / 180.0));
+            push(tan(a * PI / grados));
             break;
 
         case 'p':   /* potencia */
+        
             b = pop();
             a = pop();
             push(pow(a, b));
@@ -160,7 +162,7 @@ void processOperator(char op)
     }
 }
 
-/* ====== Mostrar pila ====== */
+/* Mostrar pila*/
 void printStack(void)
 {
     int i;
